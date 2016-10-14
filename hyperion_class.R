@@ -27,8 +27,6 @@ summary(roi_loc)
 #plot NIR and RED band in February
 library(ggplot2)
 
-
-
 #plot shapefile
 plotRGB(feb, r=32,g=22,b=12, scale=500, stretch="lin")
 plot(featureUTM, col="red",add=TRUE, lwd=3,main="roi_loc Plot")
@@ -40,5 +38,6 @@ calib <-extract(feb, featureUTM, df=TRUE)
 
 #Random Forest Classification
 library(randomForest)
+library(rpart)
 #calibrate model
-model<- randomForest(lc<-"feb.12+feb.22+feb.32", data = calib)
+model<- randomForest(lc ~ "feb.12+feb.22+feb.32", data = calib)
